@@ -64,3 +64,124 @@ weighted avg       1.00      0.98      0.99     56746
 weighted avg       1.00      1.00      1.00     56746
 
 2025-12-27 00:33:30,139 - INFO - Task 2 complete! Results saved to reports/model_results.txt
+2025-12-28 22:44:51,354 - INFO - Starting Task 2: Model Building...
+2025-12-28 22:44:51,355 - INFO - Loading processed data from data/processed/...
+2025-12-28 22:45:05,565 - INFO - All datasets loaded and converted to dense numeric format.
+2025-12-28 22:45:05,565 - INFO - Training LogisticRegression on Fraud_Data...
+2025-12-28 22:45:23,055 - INFO - Classification Report:
+              precision    recall  f1-score   support
+
+   Non-Fraud       0.95      0.99      0.97    109567
+       Fraud       0.89      0.54      0.68     11321
+
+    accuracy                           0.95    120888
+   macro avg       0.92      0.77      0.82    120888
+weighted avg       0.95      0.95      0.95    120888
+
+2025-12-28 22:45:23,057 - INFO - Training RandomForest on Fraud_Data...
+2025-12-28 22:45:41,240 - INFO - Classification Report:
+              precision    recall  f1-score   support
+
+   Non-Fraud       0.95      1.00      0.98    109567
+       Fraud       1.00      0.54      0.70     11321
+
+    accuracy                           0.96    120888
+   macro avg       0.98      0.77      0.84    120888
+weighted avg       0.96      0.96      0.95    120888
+
+2025-12-28 22:45:41,242 - INFO - Training LogisticRegression on Creditcard...
+2025-12-28 22:45:42,785 - ERROR - Error in LogisticRegression on Creditcard: The feature names should match those that were passed during fit.
+Feature names unseen at fit time:
+- -0.03507435970538125
+- -0.03903643362133212
+- -0.1122922105663146
+- -0.11575999238505812
+- -0.1279970833442114
+- ...
+Feature names seen at fit time, yet now missing:
+- -0.06820549707061835
+- -0.1561926582844282
+- -0.2085729474767431
+- -0.21858679235854384
+- -0.22943372384467148
+- ...
+
+2025-12-28 22:45:42,787 - ERROR - Critical error: The feature names should match those that were passed during fit.
+Feature names unseen at fit time:
+- -0.03507435970538125
+- -0.03903643362133212
+- -0.1122922105663146
+- -0.11575999238505812
+- -0.1279970833442114
+- ...
+Feature names seen at fit time, yet now missing:
+- -0.06820549707061835
+- -0.1561926582844282
+- -0.2085729474767431
+- -0.21858679235854384
+- -0.22943372384467148
+- ...
+
+2025-12-28 22:52:07,141 - INFO - Starting Task 2: Model Building...
+2025-12-28 22:52:07,142 - INFO - Loading processed data from data/processed/...
+2025-12-28 22:52:42,974 - INFO - All datasets loaded and converted to dense numeric format.
+2025-12-28 22:52:42,975 - INFO - Training LogisticRegression on Fraud_Data...
+2025-12-28 22:52:56,735 - INFO - Classification Report:
+              precision    recall  f1-score   support
+
+   Non-Fraud       0.95      0.99      0.97    109567
+       Fraud       0.89      0.54      0.68     11321
+
+    accuracy                           0.95    120888
+   macro avg       0.92      0.77      0.82    120888
+weighted avg       0.95      0.95      0.95    120888
+
+2025-12-28 22:52:56,737 - INFO - Training RandomForest on Fraud_Data...
+2025-12-28 22:53:14,406 - INFO - Classification Report:
+              precision    recall  f1-score   support
+
+   Non-Fraud       0.95      1.00      0.98    109567
+       Fraud       1.00      0.54      0.70     11321
+
+    accuracy                           0.96    120888
+   macro avg       0.98      0.77      0.84    120888
+weighted avg       0.96      0.96      0.95    120888
+
+2025-12-28 22:53:14,408 - INFO - Training LogisticRegression on Creditcard...
+2025-12-28 22:53:16,180 - ERROR - Error in LogisticRegression on Creditcard: The feature names should match those that were passed during fit.
+Feature names unseen at fit time:
+- -0.03507435970538125
+- -0.03903643362133212
+- -0.1122922105663146
+- -0.11575999238505812
+- -0.1279970833442114
+- ...
+Feature names seen at fit time, yet now missing:
+- -0.06820549707061835
+- -0.1561926582844282
+- -0.2085729474767431
+- -0.21858679235854384
+- -0.22943372384467148
+- ...
+
+2025-12-28 22:53:16,182 - ERROR - Critical error: The feature names should match those that were passed during fit.
+Feature names unseen at fit time:
+- -0.03507435970538125
+- -0.03903643362133212
+- -0.1122922105663146
+- -0.11575999238505812
+- -0.1279970833442114
+- ...
+Feature names seen at fit time, yet now missing:
+- -0.06820549707061835
+- -0.1561926582844282
+- -0.2085729474767431
+- -0.21858679235854384
+- -0.22943372384467148
+- ...
+
+2025-12-28 22:58:39,061 - INFO - Starting Task 2: Model Building...
+2025-12-28 22:58:39,062 - INFO - Loading SMOTE processed data from data/processed/...
+2025-12-28 22:58:50,223 - INFO - Data loaded and converted to dense numeric format.
+2025-12-28 22:58:50,224 - INFO - Training LogisticRegression...
+2025-12-28 22:59:10,439 - ERROR - Critical error: multiclass format is not supported
