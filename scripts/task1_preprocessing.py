@@ -1,7 +1,7 @@
 # scripts/task1_preprocessing.py
 # Task 1: Data Analysis and Preprocessing – Complete & Stable Version
 # Author: Bereket Feleke
-# Date: 23 December 2025
+# Date: 28 December 2025 (updated with dense saving fix)
 
 import pandas as pd
 import numpy as np
@@ -69,7 +69,7 @@ def feature_engineering(fraud_data):
     
     return fraud_data
 
-# 5. Data Transformation (No SMOTE — use class_weight in modeling)
+# 5. Data Transformation (No SMOTE — use class_weight or SMOTE in modeling)
 def transform_data(fraud_data, creditcard_data):
     num_features = ['purchase_value', 'age', 'time_since_signup_hours', 'velocity', 'transaction_frequency']
     cat_features = ['source', 'browser', 'sex', 'country']
@@ -88,6 +88,10 @@ def transform_data(fraud_data, creditcard_data):
     X_fraud_train_trans = preprocessor.fit_transform(X_fraud_train)
     X_fraud_test_trans = preprocessor.transform(X_fraud_test)
     
+    # Critical fix: Convert sparse to dense before saving
+    X_fraud_train_dense = X_fraud_train_trans.toarray() if hasattr(X_fraud_train_trans, 'toarray') else X_fraud_train_trans
+    X_fraud_test_dense = X_fraud_test_trans.toarray() if hasattr(X_fraud_test_trans, 'toarray') else X_fraud_test_trans
+    
     # Credit card (only scaling)
     scaler = StandardScaler()
     X_cc = creditcard_data.drop('Class', axis=1)
@@ -99,21 +103,22 @@ def transform_data(fraud_data, creditcard_data):
     X_cc_train_trans = scaler.fit_transform(X_cc_train)
     X_cc_test_trans = scaler.transform(X_cc_test)
     
-    # Save
-    pd.DataFrame(X_fraud_train_trans).to_csv("data/processed/X_fraud_train.csv", index=False)
-    pd.DataFrame(X_fraud_test_trans).to_csv("data/processed/X_fraud_test.csv", index=False)
-    pd.Series(y_fraud_train).to_csv("data/processed/y_fraud_train.csv", index=False)
-    pd.Series(y_fraud_test).to_csv("data/processed/y_fraud_test.csv", index=False)
+    # Save as dense CSV (no index, no header to avoid confusion)
+    pd.DataFrame(X_fraud_train_dense).to_csv("data/processed/X_fraud_train.csv", index=False, header=False)
+    pd.DataFrame(X_fraud_test_dense).to_csv("data/processed/X_fraud_test.csv", index=False, header=False)
+    pd.DataFrame(y_fraud_train).to_csv("data/processed/y_fraud_train.csv", index=False, header=False)
+    pd.DataFrame(y_fraud_test).to_csv("data/processed/y_fraud_test.csv", index=False, header=False)
     
-    pd.DataFrame(X_cc_train_trans).to_csv("data/processed/X_creditcard_train.csv", index=False)
-    pd.DataFrame(X_cc_test_trans).to_csv("data/processed/X_creditcard_test.csv", index=False)
-    pd.Series(y_cc_train).to_csv("data/processed/y_creditcard_train.csv", index=False)
-    pd.Series(y_cc_test).to_csv("data/processed/y_creditcard_test.csv", index=False)
+    pd.DataFrame(X_cc_train_trans).to_csv("data/processed/X_creditcard_train.csv", index=False, header=False)
+    pd.DataFrame(X_cc_test_trans).to_csv("data/processed/X_creditcard_test.csv", index=False, header=False)
+    pd.DataFrame(y_cc_train).to_csv("data/processed/y_creditcard_train.csv", index=False, header=False)
+    pd.DataFrame(y_cc_test).to_csv("data/processed/y_creditcard_test.csv", index=False, header=False)
     
     joblib.dump(preprocessor, "data/processed/preprocessor.pkl")
     joblib.dump(scaler, "data/processed/scaler.pkl")
     
-    print("Task 1 complete — no SMOTE dependency, using class_weight='balanced' in modeling")
+    print("Task 1 complete — processed files saved as dense numeric arrays")
+    print("Use class_weight='balanced' in modeling or SMOTE in feature-engineering.ipynb for imbalance handling")
 
 # Main
 def main():
